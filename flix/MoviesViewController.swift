@@ -16,6 +16,9 @@ class MoviesViewController: UIViewController , UISearchBarDelegate, UITableViewD
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var introView: UIView!
     
+    @IBOutlet weak var ratingLabel: UILabel!
+    
+    
     var movies: [NSDictionary]?
     
     let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
@@ -30,9 +33,15 @@ class MoviesViewController: UIViewController , UISearchBarDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.barStyle = UIBarStyle.Black
+        searchBar.translucent = true
+        
+        
+        navigationItem.title = "Flix"
+        
         self.introView.alpha = 1
         
-        UIView.animateWithDuration(3.0, animations: {
+        UIView.animateWithDuration(5.0, animations: {
             self.introView.alpha = 0
             
             
@@ -121,6 +130,7 @@ completionHandler: { (dataOrNil, response, error) in
                 refreshControl.endRefreshing()
             }
         }
+            
                                                                         
                                                                         
         })
@@ -145,7 +155,7 @@ completionHandler: { (dataOrNil, response, error) in
         
         let title = movie["title"] as! String
         
-        
+        let rating = movie["vote_average"] as! Double
         
         let overview = movie["overview"] as! String
         
@@ -182,6 +192,29 @@ completionHandler: { (dataOrNil, response, error) in
         cell.titleLabel.text = title
         
         cell.overviewLabel.text = overview
+        
+        cell.ratingLabel.text = "\(rating)"
+        
+        
+        cell.ratingView.layer.cornerRadius = 0
+        
+        
+        let backgroundGreenColor = UIColor(red: 0.3137, green: 0.7882, blue: 0.4392, alpha: 1) //#50c970
+        
+        let backgroundRedColor = UIColor(red: 0.9098, green: 0.3804, blue: 0.3608, alpha: 1)//#e8615c
+        
+        if rating > 5 {
+            cell.ratingView.backgroundColor = backgroundGreenColor
+        } else {
+            cell.ratingView.backgroundColor = backgroundRedColor
+        }
+        
+        let backgroundView = UIView()
+        
+        backgroundView.backgroundColor = backgroundGreenColor
+        cell.selectedBackgroundView = backgroundView
+        
+        
     
         return cell
     }
@@ -203,6 +236,40 @@ completionHandler: { (dataOrNil, response, error) in
         }
         tableView.reloadData()
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!){
+        
+        
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        
+        let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+        
+        
+        let movie = movies![indexPath!.row]
+        
+        detailViewController.movie = movie
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+        
+        let posterPath = movie["poster_path"] as! String
+        
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+    
+        detailViewController.imageURL = imageUrl
+        
+        
+    
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

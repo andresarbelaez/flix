@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F186FBBDC46C0F428489EEF /* Pods_flix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEFA1A791A2F77489B2381F /* Pods_flix.framework */; };
+		389E9CF41D133486003FBEF9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E9CF31D133486003FBEF9 /* DetailViewController.swift */; };
 		38AABBD51D11B7FE00658CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AABBD41D11B7FE00658CA7 /* AppDelegate.swift */; };
 		38AABBDA1D11B7FE00658CA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38AABBD81D11B7FE00658CA7 /* Main.storyboard */; };
 		38AABBDC1D11B7FE00658CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38AABBDB1D11B7FE00658CA7 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		2DEFA1A791A2F77489B2381F /* Pods_flix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		389E9CF31D133486003FBEF9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		38AABBD11D11B7FE00658CA7 /* flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38AABBD41D11B7FE00658CA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38AABBD91D11B7FE00658CA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				38AABBE61D11B85700658CA7 /* MoviesViewController.swift */,
+				389E9CF31D133486003FBEF9 /* DetailViewController.swift */,
 			);
 			name = "View controllers";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				38AABBD51D11B7FE00658CA7 /* AppDelegate.swift in Sources */,
 				38AABBE71D11B85700658CA7 /* MoviesViewController.swift in Sources */,
 				38F755431D11F4EB005BCD0A /* MovieCell.swift in Sources */,
+				389E9CF41D133486003FBEF9 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
