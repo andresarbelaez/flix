@@ -2,7 +2,7 @@
 
 **Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **8** hours spent in total
+Time spent: **14** hours spent in total
 
 ## User Stories
 
@@ -17,21 +17,23 @@ The following **optional** features are implemented:
 
 - [ ] User sees an error message when there's a networking error.
 - [ ] Movies are displayed using a CollectionView instead of a TableView.
-- [ ] User can search for a movie.
+- [x] User can search for a movie.
 - [x] All images fade in as they are loading.
 - [x] User can view the large movie poster by tapping on a cell.
 - [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
 - [x] Customize the selection effect of the cell.
 - [x] Customize the navigation bar.
-- [x] Customize the UI. Implemented icons from iconmonstr
+- [x] Customize the UI. Implemented icons from iconmonstr. Added UI animations.
 
 The following **additional** features are implemented:
 
 - [x] Customize the search bar
-- [x] Movie vote average is shown (scale 1-10)... Averages below 5 are displayed in red. Averages above 5 are displayed in green.
+- [x] Movie vote average is shown (scale 1-10)... A function determines the display color of these ratings (red, yellow, or green).
 - [x] Release Date is shown in details view
 - [x] User can scroll in details view to see movie overview
 - [x] On app launch, an initial message is shown
+- [x] A tab bar is implemented for user to navigate between Now Playing, Top Rated, and Popular
+- [x] **Proof of concept**: a webView pushes user to a Fandango search of the current movie.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -41,14 +43,14 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/P0o6WYJ.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/RaRWiIY.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I experienced many challengings while building this app. Some of these challenges included handling optionals returning nil, and implementing different endpoint calls to the Movies Database API.
 
 ## Credits
 
