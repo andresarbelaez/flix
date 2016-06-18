@@ -48,12 +48,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="213.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZDe-2D-QUQ">
+                                                <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZDe-2D-QUQ">
                                                     <rect key="frame" x="0.0" y="-5" width="287" height="218.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2H3-EW-Hw1">
-                                                    <rect key="frame" x="8" y="8" width="279" height="40"/>
+                                                    <rect key="frame" x="8" y="8" width="313" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="22"/>
@@ -61,28 +61,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="aLi-oS-nPO">
-                                                    <rect key="frame" x="240" y="0.0" width="47" height="57"/>
+                                                    <rect key="frame" x="-6" y="56" width="76" height="157.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wrq-BK-y2R">
-                                                            <rect key="frame" x="0.0" y="8" width="51" height="44"/>
+                                                            <rect key="frame" x="15" y="34" width="53" height="92"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zvG-KC-omf">
-                                                            <rect key="frame" x="-239" y="16" width="17" height="41"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.26362251110000001" green="0.76398237179999995" blue="0.55773137289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <view alpha="0.25" contentMode="scaleToFill" id="tFL-OG-wV5">
-                                                    <rect key="frame" x="0.0" y="-5" width="287" height="62"/>
+                                                    <rect key="frame" x="0.0" y="-5" width="321" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -90,7 +83,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="overviewLabel" destination="zvG-KC-omf" id="NmD-wz-TL8"/>
                                             <outlet property="posterView" destination="ZDe-2D-QUQ" id="vsw-S7-fKQ"/>
                                             <outlet property="ratingLabel" destination="wrq-BK-y2R" id="n8F-gO-idH"/>
                                             <outlet property="ratingView" destination="aLi-oS-nPO" id="J9d-pF-qqT"/>
@@ -123,7 +115,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7Qg-6k-tXA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blurry" id="UcA-yO-w3e">
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="PFB-pO-ZwA">
@@ -131,7 +127,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" id="S5b-pb-MAu">
-                                        <rect key="frame" x="0.0" y="498" width="320" height="225"/>
+                                        <rect key="frame" x="0.0" y="488" width="320" height="506"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dVJ-gD-UoR">
@@ -155,6 +151,17 @@
                                                 <color key="textColor" red="0.26362251110000001" green="0.76398237179999995" blue="0.55773137289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="x6o-FX-W7T">
+                                                <rect key="frame" x="193" y="32" width="118" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.26362251110000001" green="0.76398237179999995" blue="0.55773137289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Fandango search">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="nHt-S9-S7o" kind="push" id="vgi-cQ-aaD"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -165,6 +172,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="45g-If-a97"/>
                     <connections>
+                        <outlet property="fandangoButton" destination="x6o-FX-W7T" id="Ed2-3b-aYj"/>
                         <outlet property="infoView" destination="S5b-pb-MAu" id="JVl-My-76U"/>
                         <outlet property="overviewLabel" destination="izg-MZ-GL0" id="AEM-E6-n5F"/>
                         <outlet property="photoImage" destination="7Qg-6k-tXA" id="5Dt-Ib-gTr"/>
@@ -177,15 +185,40 @@
             </objects>
             <point key="canvasLocation" x="898" y="233"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Ix3-1P-j7i">
+            <objects>
+                <viewController id="nHt-S9-S7o" customClass="WebViewController" customModule="flix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kTw-9K-DZ1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="tYN-J8-mmJ">
+                                <rect key="frame" x="-5" y="0.0" width="325" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rwW-K1-xoh"/>
+                    <connections>
+                        <outlet property="websiteView" destination="tYN-J8-mmJ" id="PkW-Ib-bEF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPb-n3-ZJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1295" y="233"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MXg-Vb-vpb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dj8-Jd-wjN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="partialCurl" id="dj8-Jd-wjN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" id="I9b-W2-WYe">
+                    <navigationBar key="navigationBar" alpha="0.84999999999999998" contentMode="scaleToFill" id="I9b-W2-WYe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -199,6 +232,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="blurry" width="610" height="343"/>
         <image name="movieIcon" width="240" height="240"/>
     </resources>
 </document>

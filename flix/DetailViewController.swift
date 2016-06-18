@@ -21,11 +21,16 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var releaseLabel: UILabel!
+    
     var movie: NSDictionary!
     
+    @IBOutlet weak var fandangoButton: UIButton!
     
     var imageURL: NSURL!
     
+    var movieTitle: String?
+    
+    var blurImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -35,11 +40,13 @@ class DetailViewController: UIViewController {
         
         navigationItem.title = "Details"
         
+        fandangoButton.layer.cornerRadius = 10
+        
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         
-        let title = movie["title"] as! String
+        movieTitle = movie["title"] as! String
         
-        titleLabel.text = title
+        titleLabel.text = movieTitle
         
         titleLabel.sizeToFit()
         
@@ -52,8 +59,36 @@ class DetailViewController: UIViewController {
         let releaseDate = movie["release_date"] as! String
         releaseLabel.text = releaseDate
 
-        // Do any additional setup after loading the view.
+        infoView.layer.cornerRadius = 20
+        
+        
+        UIView.animateWithDuration(0.5, delay: 1.0, options: [], animations: {
+            self.infoView.frame.origin.y -= 75
+            }, completion: nil)
+        
+        
+        UIView.animateWithDuration(0.5, delay: 1.7, options: [], animations: {
+            self.infoView.frame.origin.y += 75
+            }, completion: nil)
+        
+
+        
+
+        
+        photoImage.layer.cornerRadius = 20
+        
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        
+        let webViewController = segue.destinationViewController as! WebViewController
+        
+
+        
+        webViewController.movieURL = NSURL(string: "http://www.fandango.com/search?q=warcraft")!
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

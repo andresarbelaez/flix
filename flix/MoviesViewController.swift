@@ -21,17 +21,17 @@ class MoviesViewController: UIViewController , UISearchBarDelegate, UITableViewD
     
     var movies: [NSDictionary]?
     
-    let data = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX",
-                "Philadelphia, PA", "Phoenix, AZ", "San Diego, CA", "San Antonio, TX",
-                "Dallas, TX", "Detroit, MI", "San Jose, CA", "Indianapolis, IN",
-                "Jacksonville, FL", "San Francisco, CA", "Columbus, OH", "Austin, TX",
-                "Memphis, TN", "Baltimore, MD", "Charlotte, ND", "Fort Worth, TX"]
+    var filteredMovies: [NSDictionary]?
     
-    var filteredData: [String]!
     
+    var endpoint: String!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         searchBar.barStyle = UIBarStyle.Black
         searchBar.translucent = true
@@ -52,7 +52,6 @@ class MoviesViewController: UIViewController , UISearchBarDelegate, UITableViewD
         tableView.delegate = self
         searchBar.delegate = self
         
-        filteredData = data
         
         
         
@@ -64,7 +63,7 @@ class MoviesViewController: UIViewController , UISearchBarDelegate, UITableViewD
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         
         
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         
         
         let request = NSURLRequest(
@@ -91,13 +90,15 @@ completionHandler: { (dataOrNil, response, error) in
             if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
                 print("response: \(responseDictionary)")
                 
-                    self.movies = responseDictionary["results"] as! [NSDictionary]
+                    self.movies = responseDictionary["results"] as? [NSDictionary]
+                    self.filteredMovies = self.movies
                     self.tableView.reloadData()
                 }
             }
     
     
         })
+        
         task.resume()
         
         
@@ -106,7 +107,7 @@ completionHandler: { (dataOrNil, response, error) in
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
@@ -125,7 +126,7 @@ completionHandler: { (dataOrNil, response, error) in
             if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
                 print("response: \(responseDictionary)")
                                                                                 
-                self.movies = responseDictionary["results"] as! [NSDictionary]
+                self.movies = responseDictionary["results"] as? [NSDictionary]
                 self.tableView.reloadData()
                 refreshControl.endRefreshing()
             }
@@ -141,8 +142,10 @@ completionHandler: { (dataOrNil, response, error) in
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let movies = movies{
-            return movies.count
+        
+        
+        if let filteredMovies = filteredMovies{
+            return filteredMovies.count
         } else {
             return 0
         }
@@ -151,17 +154,15 @@ completionHandler: { (dataOrNil, response, error) in
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
-         let movie = movies![indexPath.row]
+        let filteredMovie = filteredMovies![indexPath.row]
         
-        let title = movie["title"] as! String
+        let title = filteredMovie["title"] as! String
         
-        let rating = movie["vote_average"] as! Double
-        
-        let overview = movie["overview"] as! String
+        let rating = filteredMovie["vote_average"] as! Double
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         
-        let posterPath = movie["poster_path"] as! String
+        let posterPath = filteredMovie["poster_path"] as! String
         
         let imageUrl = NSURL(string: baseUrl + posterPath)
         
@@ -177,8 +178,10 @@ completionHandler: { (dataOrNil, response, error) in
                     print("Image was NOT cached, fade in image")
                     cell.posterView.alpha = 0.0
                     cell.posterView.image = image
+                    cell.titleLabel.alpha = 0.0
                     UIView.animateWithDuration(0.5, animations: { () -> Void in
                         cell.posterView.alpha = 1.0
+                        cell.titleLabel.alpha = 1.0
                     })
                 } else {
                     print("Image was cached so just update the image")
@@ -191,7 +194,7 @@ completionHandler: { (dataOrNil, response, error) in
         
         cell.titleLabel.text = title
         
-        cell.overviewLabel.text = overview
+        
         
         cell.ratingLabel.text = "\(rating)"
         
@@ -202,20 +205,26 @@ completionHandler: { (dataOrNil, response, error) in
         let backgroundGreenColor = UIColor(red: 0.3137, green: 0.7882, blue: 0.4392, alpha: 1) //#50c970
         
         let backgroundRedColor = UIColor(red: 0.9098, green: 0.3804, blue: 0.3608, alpha: 1)//#e8615c
+    
         
-        if rating > 5 {
-            cell.ratingView.backgroundColor = backgroundGreenColor
-        } else {
-            cell.ratingView.backgroundColor = backgroundRedColor
-        }
+        let backgroundYellowColor = UIColor(red: 0.949, green: 0.9098, blue: 0.3765, alpha: 1)//#f2e860
+        
         
         let backgroundView = UIView()
         
-        backgroundView.backgroundColor = backgroundGreenColor
-        cell.selectedBackgroundView = backgroundView
-        
-        
-    
+        if rating > 6 {
+            cell.ratingView.backgroundColor = backgroundGreenColor
+            backgroundView.backgroundColor = backgroundGreenColor
+            cell.selectedBackgroundView = backgroundView
+        } else if rating > 5 {
+            cell.ratingView.backgroundColor = backgroundYellowColor
+            backgroundView.backgroundColor = backgroundYellowColor
+            cell.selectedBackgroundView = backgroundView
+        } else {
+            cell.ratingView.backgroundColor = backgroundRedColor
+            backgroundView.backgroundColor = backgroundRedColor
+            cell.selectedBackgroundView = backgroundView
+        }
         return cell
     }
     
@@ -223,11 +232,14 @@ completionHandler: { (dataOrNil, response, error) in
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         // When there is no text, filteredData is the same as the original data
         if searchText.isEmpty {
-            filteredData = data
+            filteredMovies = movies
         } else {
-            filteredData = data.filter({(dataItem: String) -> Bool in
+            filteredMovies = movies!.filter({(dataItem: NSDictionary) -> Bool in
                 // If dataItem matches the searchText, return true to include it
-                if dataItem.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
+                
+                let title = dataItem["title"] as! String
+                
+                if title.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
                     return true
                 } else {
                     return false
@@ -238,7 +250,7 @@ completionHandler: { (dataOrNil, response, error) in
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!){
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
         
         
         let detailViewController = segue.destinationViewController as! DetailViewController
@@ -246,29 +258,18 @@ completionHandler: { (dataOrNil, response, error) in
         let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
         
         
-        let movie = movies![indexPath!.row]
+        let filteredMovie = movies![indexPath!.row]
         
-        detailViewController.movie = movie
+        detailViewController.movie = filteredMovie
         
         let baseUrl = "http://image.tmdb.org/t/p/w500"
         
-        let posterPath = movie["poster_path"] as! String
+        let posterPath = filteredMovie["poster_path"] as! String
         
         let imageUrl = NSURL(string: baseUrl + posterPath)
     
         detailViewController.imageURL = imageUrl
-        
-        
-    
-        
     }
-    
-    
-    
-    
-    
-    
-    
     
 
     override func didReceiveMemoryWarning() {
